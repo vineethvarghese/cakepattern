@@ -15,7 +15,7 @@ trait UserRepositoryComponent {
 
 trait UserRepositoryComponentImpl extends UserRepositoryComponent {
 
-  override val userRepository = new UserRepositoryImpl
+  override val userRepository: UserRepository = new UserRepositoryImpl
 
   private class UserRepositoryImpl extends UserRepository {
     override def create(user: User): Unit = println("UserRepositoryImpl.create")
@@ -38,7 +38,7 @@ trait UserServiceComponent {
 trait UserServiceComponentImpl extends UserServiceComponent {
   self: UserRepositoryComponent =>
 
-  override val userService = new UserServiceImpl
+  override val userService: UserService = new UserServiceImpl
 
   private class UserServiceImpl extends UserService {
     override def create(user: User): Unit = userRepository.create(user)
